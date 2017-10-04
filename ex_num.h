@@ -14,6 +14,7 @@ public :
     ex_num operator - (ex_num & b);
     ex_num operator + (ex_num & b);
     ~ex_num();
+    friend std::ostream & operator << (std::ostream& ,const ex_num &);
 private:
 void sub_recur(std::vector<int> &, std::vector<int> &,int index = 0);
 
