@@ -14,8 +14,6 @@ ex_num::ex_num(char *val) {
     for (int i = 0; i < strlen(val); i++) {
         data.push_back((int) *(val + i) - 48);
     }
-    std::cout << data[0] << std::endl;
-    std::cout << std::endl;
 }
 
 ex_num::ex_num(const ex_num &) {
