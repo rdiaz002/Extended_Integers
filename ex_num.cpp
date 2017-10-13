@@ -41,28 +41,35 @@ ex_num ex_num::operator-(ex_num &b) {
     ex_num d;
     d.data.resize(tempb.size());
     std::copy(tempb.begin(), tempb.end(), d.data.begin());
+    while(*(d.data.end()-1)== 0 && d.data.size()>1){
+        d.data.erase(d.data.end()-1);
+    }
     return d;
 }
 
 ex_num ex_num::operator+(ex_num &b) {
+    int max_size = std::max(b.data.size(),data.size());
     std::vector<int> tempb;
-    tempb.resize(b.data.size() + 1);
+    tempb.resize(max_size+1);
     std::vector<int> tempa;
-    tempa.resize(data.size() + 1);
+    tempa.resize(max_size + 1 );
     std::copy(b.data.begin(), b.data.end(), tempb.begin() );
     std::copy(data.begin(), data.end(), tempa.begin() );
     ex_num d;
-    d.data.resize(tempa.size());
+    d.data.resize(max_size+1);
     while (tempb.size() < tempa.size()) {
         tempb.insert(tempb.begin(), 0);
     }
-    for (int i = 0; i <tempa.size(); i++) {
+    for (int i = 0; i <max_size; i++) {
         if ((tempa.at(i) + tempb.at(i)) >= 10) {
             d.data.at(i) = (tempa.at(i) + tempb.at(i)) % 10;
             tempa.at(i + 1) += 1;
         } else {
             d.data.at(i) = (tempa.at(i) + tempb.at(i));
         }
+    }
+    while(*(d.data.end()-1)== 0 && d.data.size()>1){
+        d.data.erase(d.data.end()-1);
     }
     return d;
 }
